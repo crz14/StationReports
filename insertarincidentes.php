@@ -2,44 +2,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Insertar Falla</title>
+    <title>Incidentes Cisco</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">.
   </head>
   <body>
     <?php
     session_start();
-
-
     include 'conn.php';
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     if ($conn=== false) {
       die("Connection failed: " . mysqli_connect_error());
     }
-
     $User=$_SESSION['name']." ".$_SESSION['lastname'];
-    $Line = $_POST['linea'];
-    $Station = $_POST['estacion'];
-    $NStation = $_POST['Nestacion'];
-    $Ncell = $_POST['Ncelda'];
-    $Nissue = $_POST['Nfalla'];
-    $Solution = $_POST['solucion'];
-    $Ftime = $_POST['tiempoR'];
-    $Comment = $_POST['comentario'];
-    $Question = $_POST['pregunta'];
-    $Status = $_POST['estatus'];
-    $concatenado= $Line.$Station;
+    $Nincidente = $_POST['Nincidente'];
+    $descripcion = $_POST['descripcion'];
+    $propietario = $_POST['propietario'];
+    $Comentario = $_POST['comentario'];
 
-    $id= "SELECT Station_id from stations where Nomenclature ='$concatenado'";
-    $result = mysqli_query($conn, $id);
-    $row =mysqli_fetch_row($result);
-    $dato=$row[0];
 
-    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,Nomenclature)
-    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$concatenado')";
+    $consulta = "INSERT INTO ciscoincidents (User_name,inc_number,inc_description,inc_owner,comments)
+    		          VALUES ('$User','$Nincidente','$descripcion','$propietario','$Comentario')";
 
       if(mysqli_query($conn, $consulta)){
               echo "<div class='alert alert-success mt-6' role='alert'>Datos Agregados Correctamente.</div>";
-              header( "refresh:1;url=index.php" );
+            //  header( "refresh:2;url=index.php" );
     } else {
               echo "<div class='alert alert-danger mt-4' role='alert'>Error al ingresar datos! $consulta.</div>" . mysqli_connect_error($consulta);
     }
