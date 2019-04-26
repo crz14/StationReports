@@ -62,13 +62,14 @@ session_start();
           <a href="#" id="q" class="list-group-item list-group-item-action text-white bg-dark">Tickets de Incidentes</a>
           </div>
         </div>
-        <!-- <div class="btn-group dropright">
+        <div class="btn-group dropright">
         <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Mostrar</button>
           <div class="dropdown-menu">
-          <a href="#" class="list-group-item list-group-item-action text-white bg-dark">tickets de Fallas</a>
-          <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Tabla de incidentes</a>
+          <a href="#" class="list-group-item list-group-item-action text-white bg-dark">Lista UCS</a>
+          <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Maquinas Virtuales</a>
+          <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Casos (Abiertos / Cerrados)</a>
           </div>
-        </div> -->
+        </div>
         <a href="#" class="list-group-item list-group-item-action text-white bg-dark">Graficas</a>
         <div class="btn-group dropright">
         <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Inventarios</button>
@@ -120,7 +121,8 @@ session_start();
            });
 
           $("#ctick").on("click",function(){
-           $("#result").load("query.php");
+            // $("#result").load("fallaquery.html");
+             $("#result").load("query.php");
            });
       });
   </script>
