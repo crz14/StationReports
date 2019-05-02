@@ -65,7 +65,7 @@ session_start();
         <div class="btn-group dropright">
         <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Mostrar</button>
           <div class="dropdown-menu">
-          <a href="#" class="list-group-item list-group-item-action text-white bg-dark">Lista UCS</a>
+          <a href="#" id="listaucs"class="list-group-item list-group-item-action text-white bg-dark">Lista UCS</a>
           <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Maquinas Virtuales</a>
           <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Casos (Abiertos / Cerrados)</a>
           </div>
@@ -90,13 +90,12 @@ session_start();
         </nav>
       <div class="container-fluid">
         <h1 class="mt-4"> Ingenieria de Pruebas </h1><br>
-        <div id="result">
-        </div>
-
         <div class="chart">
+          <div id="result">
+          </div><br><br><br><br><br><br></br>
           ​<img src="images/chart.jpg" class="rounded mx-auto d-block" alt="...">
-
         </div>
+
       </div>
     </div>
   </div>
@@ -124,6 +123,9 @@ session_start();
             // $("#result").load("fallaquery.html");
              $("#result").load("query.php");
            });
+           $("#listaucs").on("click",function(){
+            $("#result").load("queryUCS.php");
+            });
       });
   </script>
 

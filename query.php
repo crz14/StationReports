@@ -30,7 +30,7 @@
           }
     ?>
 
-    <div class="container" style="margin-top:10px">
+    <div class="container" style="margin-top:80px">
 
     <!-- <table class="table table-hover table-sm table-dark"> -->
     <table class="table table-sm table-striped">
@@ -53,7 +53,7 @@
                 <tbody>
 
 <?php
-  
+
   include 'conn.php';
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
   if ($conn=== false) {
@@ -63,11 +63,12 @@
   $sql = "SELECT Issue_date, User_name, Production_line, Station_name,Station_Number,Cell_number,
           Issue_name,Issue_solution,Repaired_time FROM issues WHERE Issue_status='opened'";
           $result = mysqli_query($conn, $sql);
-    			$row = mysqli_fetch_row($result);
+    			//$row = mysqli_fetch_row($result);
           if ($result->num_rows > 0) {
 
               while($row = $result->fetch_assoc()) {
-        echo '<tr><td>'.$row["Issue_date"].'</td>
+
+                echo '<tr><td>'.$row["Issue_date"].'</td>
                <td>'.$row["User_name"].'</td>
                <td>'.$row["Production_line"].'</td>
                <td>'.$row["Station_name"].'</td>

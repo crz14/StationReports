@@ -38,12 +38,25 @@ if($page=='view'){
 
     $input = filter_input_array(INPUT_POST);
 
+    $var  = $input['Issue_solution'] ;
+    $var2  = $input['Repaired_time'] ;
+
+    // echo '<script type="text/javascript">alert("checando datos");</script>';
+    // if (empty($var) || empty($var2) == 0) {
+    //   echo '<script type="text/javascript">alert("Ingresar ambos datos");</script>';
+    // }else if ($input['action'] == 'edit') {
+    //   $mysqli->query("UPDATE issues SET Issue_status = 'closed' ,Issue_solution='" . $input['Issue_solution'] . "', Repaired_time='" . $input['Repaired_time'] . "' WHERE Issue_id='" . $input['Issue_id'] . "'");
+    //   echo '<script type="text/javascript">alert("Ingresar ambos datos");</script>';
+    // }
+
 
 
     if ($input['action'] == 'edit')
      {
         $mysqli->query("UPDATE issues SET Issue_status = 'closed' ,Issue_solution='" . $input['Issue_solution'] . "', Repaired_time='" . $input['Repaired_time'] . "' WHERE Issue_id='" . $input['Issue_id'] . "'");
      }
+
+
     // else if ($input['action'] == 'delete') {
     //     $mysqli->query("UPDATE tabledit SET deleted=1 WHERE id='" . $input['id'] . "'");
     // } else if ($input['action'] == 'restore') {

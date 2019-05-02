@@ -27,24 +27,20 @@ if(isset($_POST['action']))
 			$output .= '<option value="'.$row["Station_name"].'">'.$row["Station_name"].'</option>';
 		}
 	}
-	if($_POST["action"] == 'lineaPU')
+	if($_POST["action"] == 'nombreE')
 	{
-		$query = "
-		SELECT Station_name FROM stations
-		WHERE Station_model = :Station_model
-		GROUP BY Station_name
-		";
+		$query = "SELECT ucs_line FROM ucs_list WHERE station_name = :station_name GROUP BY ucs_line";
 		$statement = $connect->prepare($query);
 		$statement->execute(
 			array(
-				':Station_model'		=>	$_POST["query"]
+				':station_name'		=>	$_POST["query"]
 			)
 		);
 		$result = $statement->fetchAll();
-		$output .= '<option value="">Nombre Estacion</option>';
+		$output .= '<option value="">Area</option>';
 		foreach($result as $row)
 		{
-			$output .= '<option value="'.$row["Station_name"].'">'.$row["Station_name"].'</option>';
+			$output .= '<option value="'.$row["ucs_line"].'">'.$row["ucs_line"].'</option>';
 		}
 	}
 	if($_POST["action"] == 'nombreEU')

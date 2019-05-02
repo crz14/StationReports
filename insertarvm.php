@@ -23,23 +23,24 @@
 
     $consulta = "SELECT id_ucs FROM ucs_list where ucs_esxihost = '$Nucs'";
     $result = mysqli_query($conn, $consulta);
-    $iducs ="";
+    //$iducs ="";
       while ($row = mysqli_fetch_row($result)) {
         $iducs = $row[0];
       }
+
     //$id= "SELECT Station_id from stations where Nomenclature ='$concatenado'";
     //$result = mysqli_query($conn, $id);
     //$row =mysqli_fetch_row($result);
     //$dato=$row[0];
 
-    $consulta = "INSERT INTO virtual_machines (vm_hostname,vm_ipaddress,vm_macaddress,id_ucs,comments)
+    $consulta2 = "INSERT INTO virtual_machines (vm_hostname,vm_ipaddress,vm_macaddress,id_ucs,comments)
     		          VALUES ('$Nhost','$Dip','$Dmac','$iducs','$Comment')";
 
-      if(mysqli_query($conn, $consulta)){
+      if(mysqli_query($conn, $consulta2)){
               echo "<div class='alert alert-success mt-6' role='alert'>Datos Agregados Correctamente.</div>";
               header( "refresh:2;url=index.php" );
     } else {
-              echo "<div class='alert alert-danger mt-4' role='alert'>Error al ingresar datos! $consulta.</div>" . mysqli_connect_error($consulta);
+              echo "<div class='alert alert-danger mt-4' role='alert'>Error al ingresar datos! $consulta2.</div>" . mysqli_connect_error($consulta2);
     }
 
     ?>

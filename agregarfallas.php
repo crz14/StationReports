@@ -34,7 +34,7 @@
           <p><a href='login.php'>Login Here</a></p></div>";
           exit;
           }
-    
+
 
 
     include ('conn.php');
@@ -52,13 +52,14 @@
 
           $options = $options."<option>$row[0]</option>";
       }
-      $query = "SELECT DISTINCT Station_name FROM stations";
-      $result2 = mysqli_query($conn, $query);
-      $options2 ="";
-      while ($row2 = mysqli_fetch_row($result2)) {
-
-          $options2 = $options2."<option>$row2[0]</option>";
-      }
+      // $query = "SELECT DISTINCT Station_name FROM stations";
+      // $result2 = mysqli_query($conn, $query);
+      // $options2 ="";
+      // while ($row2 = mysqli_fetch_row($result2)) {
+      //
+      //     $options2 = $options2."<option>$row2[0]</option>";
+      // }
+      
       foreach($result as $row)
       {
       	$linea .= '<option value="'.$row["Station_model"].'">'.$row["Station_model"].'</option>';
@@ -71,15 +72,15 @@
       <p class="h4 mb-4">Agregar Fallas</p>
       <div class="form-row mb-0">
           <div class="col">
-              <select name="linea" id="lineaP" class="browser-default custom-select mb-4 form-control action" >
+              <select name="linea" id="lineaP" class="browser-default custom-select mb-4 form-control action" required >
                   <option value="" disabled selected>Linea Produccion:</option>
                     <?php echo $options;?>
               </select>
-              <select name="estacion" id="nombreE" class="browser-default custom-select mb-4 form-control action">
+              <select name="estacion" id="nombreE" class="browser-default custom-select mb-4 form-control action" required>
       					<option value="">Nombre Estacion</option>
       				</select>
 
-              <select name="Nestacion" id="numeroE" class="browser-default custom-select mb-4">
+              <select name="Nestacion" id="numeroE" class="browser-default custom-select mb-4" required>
                   <option value="" disabled selected>Numero Estacion:</option>
                   <?php
                   for ($i=1; $i <26 ; $i++) {
@@ -87,7 +88,7 @@
                   }
                    ?>
               </select>
-              <select name="Ncelda" id="numeroC"class="browser-default custom-select mb-4">
+              <select name="Ncelda" id="numeroC"class="browser-default custom-select mb-4" required>
                   <option value="" disabled selected>Numero Celda:</option>
                   <?php
                   for ($i=0; $i < 46 ; $i++) {
@@ -99,18 +100,20 @@
 
           </div>
           <div class="col">
-            <select name="Nfalla" id="nombreF"class="browser-default custom-select mb-4">
+
+              <input type="text" name="Nfalla" id="nombreF" class="form-control mb-4" placeholder="Nombre Falla:" required>
+              <!-- <select name="Nfalla" id="nombreF"class="browser-default custom-select mb-4" required>
                 <option value="" disabled selected>Nombre Falla:</option>
                 <option value="stack">Cable Stack</option>
 
-            </select>
-            <select name="estatus" id="status"class="browser-default custom-select mb-4 ">
+            </select> -->
+            <select name="estatus" id="status"class="browser-default custom-select mb-4 " required>
                 <option value="" disabled selected>Se reparo la celda?</option>
-                <option value="closed">si</option>
+                <option value="closed">Si</option>
                 <option value="opened">No</option>
             </select>
 
-            <input type="text" name="tiempoR" class="form-control mb-4" placeholder="Tiempo de solucion (min)" >
+            <input type="number" name="tiempoR" class="form-control mb-4" placeholder="Tiempo de solucion (min)" required>
             <select name="pregunta"  id="pregunta"class="browser-default custom-select mb-4">
                 <option value="" disabled selected>Se detuvo la estacion?</option>
                 <option value="si">Si</option>

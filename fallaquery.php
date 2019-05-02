@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cerrar Incidentes</title>
      <link href="css/bootstrap1.css" rel="stylesheet"/>
-    <link href="css/font-awesome1.css" rel="stylesheet"/>
+    <!-- <link href="css/font-awesome1.css" rel="stylesheet"/> -->
 </head>
 <body onload="viewData()">
   <?php
