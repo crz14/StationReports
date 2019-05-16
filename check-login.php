@@ -41,7 +41,7 @@ session_start();
 					$_SESSION['expire'] = $_SESSION['start'] + (1 * 60) ;
 				header ("Location: index.php");
 				}else {
-					echo "<div class='alert alert-danger mt-4' role='alert'>Numero de reloj incorrecto!
+					echo "<div class='alert alert-danger mt-4' role='alert'>Usuario no encontrado!
 					<p><a href='login.html'><strong>Intentar de nuevo!</strong></a></p></div>";
 
 				}

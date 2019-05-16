@@ -54,8 +54,8 @@
 
     <div class="container" style="margin-top:80px">
 
-        <input class="form-control my-0 py-1" id="search_text" type="text" placeholder="Buscar por Linea/Area/Estacion" aria-label="Search"></br>
-        <div id="filter">
+        <input class="form-control my-0 py-1" id="search_text" type="text" placeholder="Buscar por Responsable/fecha/Estatus" aria-label="Search"></br>
+        <div id="filter3">
 
         </div>
 
@@ -71,12 +71,12 @@ $(document).ready(function(){
  function load_data(query)
  {
   $.ajax({
-   url:"fetchlive.php",
+   url:"fetchlivecisco.php",
    method:"POST",
    data:{query:query},
    success:function(data)
    {
-    $('#filter').html(data);
+    $('#filter3').html(data);
    }
   });
  }

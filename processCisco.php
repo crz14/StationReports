@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 $mysqli = new mysqli('localhost', 'root', '', 'deadtime');
 
 if (mysqli_connect_errno()) {
@@ -10,22 +12,21 @@ if (mysqli_connect_errno()) {
 $User=$_SESSION['name']." ".$_SESSION['lastname'];
 $page = isset($_GET['p'])? $_GET['p'] : '' ;
 if($page=='view'){
-    $result = $mysqli->query("SELECT Issue_id,Issue_date, User_name, Production_line, Station_name,Station_Number,Cell_number,
-          Issue_name,Issue_solution,Repaired_time FROM issues WHERE Issue_status='opened'");
+    $result = $mysqli->query("SELECT id_inc,inc_date, User_name, inc_number, inc_description,inc_owner,inc_date_closed,
+          comments,elapsed_time FROM ciscoincidents WHERE incStatus='opened'");
     while($row = $result->fetch_assoc()){
         ?>
         <tr>
 
-          <td><?php echo $row["Issue_id"] ?></td>
-          <td><?php echo $row["Issue_date"] ?></td>
+          <td><?php echo $row["id_inc"] ?></td>
+          <td><?php echo $row["inc_date"] ?></td>
           <td><?php echo $row["User_name"] ?></td>
-          <td><?php echo $row["Production_line"] ?></td>
-          <td><?php echo $row["Station_name"] ?></td>
-          <td><?php echo $row["Station_Number"] ?></td>
-          <td><?php echo $row["Cell_number"] ?></td>
-          <td><?php echo $row["Issue_name"] ?></td>
-          <td><?php echo $row["Issue_solution"] ?></td>
-          <td><?php echo $row["Repaired_time"] ?></td>
+          <td><?php echo $row["inc_number"] ?></td>
+          <td><?php echo $row["inc_description"] ?></td>
+          <td><?php echo $row["inc_owner"] ?></td>
+          <td><?php echo $row["inc_date_closed"] ?></td>
+          <td><?php echo $row["comments"] ?></td>
+        
 
         </tr>
         <?php
@@ -39,8 +40,8 @@ if($page=='view'){
 
     $input = filter_input_array(INPUT_POST);
 
-    $var  = $input['Issue_solution'] ;
-    $var2  = $input['Repaired_time'] ;
+    // $var  = $input['Issue_solution'] ;
+    // $var2  = $input['Repaired_time'] ;
 
     // echo '<script type="text/javascript">alert("checando datos");</script>';
     // if (empty($var) || empty($var2) == 0) {
@@ -52,10 +53,18 @@ if($page=='view'){
 
 
 
-    if ($input['action'] == 'edit')
+    if ($input['action'] == 'edit1')
      {
-        $mysqli->query("UPDATE issues SET Issue_status = 'closed' ,issueClosedby='" . $User . "',Issue_solution='" . $input['Issue_solution'] . "', Repaired_time='" . $input['Repaired_time'] . "' WHERE Issue_id='" . $input['Issue_id'] . "'");
+
+
+        // $id= "SELECT TIMEDIFF (inc_date,inc_date_closed) FROM ciscoincidents where id_inc='" . $input['id_inc'] . "'";
+        // $result2 = mysqli_query($mysqli, $id);
+        // $row2 =mysqli_fetch_row($result2);
+        // $dato2=$row2[0];
+        $mysqli->query("UPDATE ciscoincidents SET incStatus = 'closed',IncClosedby='" . $User . "',comments='" . $input['comments'] . "',inc_date_closed= CURRENT_TIMESTAMP  WHERE id_inc='" . $input['id_inc'] . "' AND inc_date_closed = '0'");
+
      }
+
 
 
     // else if ($input['action'] == 'delete') {

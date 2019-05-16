@@ -24,7 +24,7 @@ if(mysqli_num_rows($result) > 0)
 {
  $output .= '
   <div class="table-responsive">
-  
+
    <table class="table table-hover table-sm table-dark">
     <tr>
     <th scope="col"><h6>UCS</h6></th>
@@ -54,7 +54,7 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
- echo 'Data Not Found';
+ echo 'No hay UCS ';
 }
 
 ?>

@@ -18,14 +18,15 @@
     $descripcion = $_POST['descripcion'];
     $propietario = $_POST['propietario'];
     $Comentario = $_POST['comentario'];
+    $Abierto = "opened";
 
 
-    $consulta = "INSERT INTO ciscoincidents (User_name,inc_number,inc_description,inc_owner,comments)
-    		          VALUES ('$User','$Nincidente','$descripcion','$propietario','$Comentario')";
+    $consulta = "INSERT INTO ciscoincidents (User_name,inc_number,inc_description,inc_owner,comments,incStatus)
+    		          VALUES ('$User','$Nincidente','$descripcion','$propietario','$Comentario','$Abierto')";
 
       if(mysqli_query($conn, $consulta)){
               echo "<div class='alert alert-success mt-6' role='alert'>Datos Agregados Correctamente.</div>";
-            //  header( "refresh:2;url=index.php" );
+            header( "refresh:1;url=index.php" );
     } else {
               echo "<div class='alert alert-danger mt-4' role='alert'>Error al ingresar datos! $consulta.</div>" . mysqli_connect_error($consulta);
     }

@@ -86,7 +86,8 @@ $conn->close();
 ?>
   </tbody>
 </table>
-<a href="fallaquery.php"<button class="btn btn-info btn-block" type="submit">Editar Registros</button></a>
+<!-- <a href="fallaquery.php"<button class="btn btn-info btn-block" type="submit">Editar Registros</button></a> -->
+<a class="btn btn-info btn-block" href="fallaquery.php" role="button">Editar Registros</a>
 </div>
   </body>
 </html>

@@ -59,7 +59,7 @@
       //
       //     $options2 = $options2."<option>$row2[0]</option>";
       // }
-      
+
       foreach($result as $row)
       {
       	$linea .= '<option value="'.$row["Station_model"].'">'.$row["Station_model"].'</option>';
@@ -79,24 +79,9 @@
               <select name="estacion" id="nombreE" class="browser-default custom-select mb-4 form-control action" required>
       					<option value="">Nombre Estacion</option>
       				</select>
+              <input type="number" name="Nestacion" class="form-control mb-4" placeholder="Numero Estacion:" required>
 
-              <select name="Nestacion" id="numeroE" class="browser-default custom-select mb-4" required>
-                  <option value="" disabled selected>Numero Estacion:</option>
-                  <?php
-                  for ($i=1; $i <26 ; $i++) {
-                    echo "<option>$i</option>";
-                  }
-                   ?>
-              </select>
-              <select name="Ncelda" id="numeroC"class="browser-default custom-select mb-4" required>
-                  <option value="" disabled selected>Numero Celda:</option>
-                  <?php
-                  for ($i=0; $i < 46 ; $i++) {
-                    echo "<option>$i</option>";
-                  }
-                   ?>
-
-              </select>
+              <input type="number" name="Ncelda" class="form-control mb-4" placeholder="Numero Celda:" required>
 
           </div>
           <div class="col">
@@ -108,7 +93,7 @@
 
             </select> -->
             <select name="estatus" id="status"class="browser-default custom-select mb-4 " required>
-                <option value="" disabled selected>Se reparo la celda?</option>
+                <option value="" disabled selected>Se reparo la Falla?</option>
                 <option value="closed">Si</option>
                 <option value="opened">No</option>
             </select>

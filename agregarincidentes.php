@@ -52,22 +52,17 @@
       <p class="h4 mb-4">Agregar Incidente</p>
       <div class="form-row mb-0">
           <div class="col">
-              <!--<input type="text" name="linea" class="form-control mb-4" placeholder="Linea Produccion" required>-->
-              <!---->
 
               <input type="text" name="Nincidente" class="form-control mb-4" placeholder="Numero de incidente" required>
-              <input type="text" name="descripcion" class="form-control mb-4" placeholder="Descripcion del incidente" required>
 
           </div>
           <div class="col">
             <input type="text" name="propietario" class="form-control mb-4" placeholder="Seguimiento por:" required>
-            <input type="date" name="fechacerrado" class="form-control mb-4" placeholder="Fecha de ticket cerrado" disabled>
-
-
           </div>
       </div>
 
       <div class="form-group mb-3">
+          <input type="text" name="descripcion" class="form-control mb-4" placeholder="Descripcion del incidente" required>
           <textarea class="form-control rounded-0" name="comentario" rows="4" placeholder="Comentarios"></textarea>
       </div>
       <button class="btn btn-info btn-block" type="submit">Enviar</button>

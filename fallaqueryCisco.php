@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cerrar Fallas</title>
+    <title>Cerrar Incidentes</title>
      <link href="css/bootstrap1.css" rel="stylesheet"/>
     <!-- <link href="css/font-awesome1.css" rel="stylesheet"/> -->
 </head>
@@ -39,13 +39,13 @@
                   <th scope="col">ID</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Usuario</th>
-                  <th scope="col">Linea</th>
-                  <th scope="col">Estacion</th>
-                  <th scope="col">Numero Estacion</th>
-                  <th scope="col">Numero Celda</th>
-                  <th scope="col">Nombre Falla</th>
-                  <th scope="col">Solucion</th>
-                  <th scope="col">Minutos</th>
+                  <th scope="col">Numero Incidente</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Responsable</th>
+                  <th scope="col">Fecha Cerrado</th>
+                  <th scope="col">Comentarios</th>
+                  
+
                 </tr>
             </thead>
             <tbody></tbody>
@@ -59,7 +59,7 @@
     <script>
     function viewData(){
         $.ajax({
-            url: 'process.php?p=view',
+            url: 'processCisco.php?p=view',
             method: 'GET'
         }).done(function(data){
             $('tbody').html(data)
@@ -68,7 +68,7 @@
     }
     function tableData(){
         $('#tabledit').Tabledit({
-            url: 'process.php',
+            url: 'processCisco.php',
             eventType: 'dblclick',
             editButton: true,
             //deleteButton: true,
@@ -77,7 +77,7 @@
                 edit: {
                     class: 'btn btn-sm btn-info',
                     html: '<span class="glyphicon glyphicon-pencil"></span> Editar',
-                    action: 'edit',
+                    action: 'edit1',
 
                 },
 
@@ -103,8 +103,8 @@
                 // }
             },
             columns: {
-                identifier: [0, 'Issue_id'],
-                editable : [[8, 'Issue_solution'],[9, 'Repaired_time']]
+                identifier: [0, 'id_inc'],
+                editable : [[7, 'comments']]
                 //editable: [[1, 'name'],[2, 'gender', '{"1": "Laki-laki", "2": "Perempuan", "3": "Waria"}'],[3, 'email'], [4, 'phone'], [5, 'address']]
             },
             onSuccess: function(data, textStatus, jqXHR) {

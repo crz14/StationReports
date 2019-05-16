@@ -34,8 +34,18 @@
     $row =mysqli_fetch_row($result);
     $dato=$row[0];
 
-    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,Nomenclature)
-    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$concatenado')";
+
+
+                  if ($Status == "closed") {
+                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,issueClosedby,Nomenclature)
+                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$User','$concatenado')";
+
+
+                  }else{
+                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,Nomenclature)
+                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$concatenado')";
+                  }
+
 
       if(mysqli_query($conn, $consulta)){
               echo "<div class='alert alert-success mt-6' role='alert'>Datos Agregados Correctamente.</div>";

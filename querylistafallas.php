@@ -30,36 +30,22 @@
           }
           include ('conn.php');
 
-          $linea = '';
-            $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-            if ($conn=== false) {
-              die("Connection failed: " . mysqli_connect_error());
-            }
 
-            $consulta = "SELECT DISTINCT Station_model FROM stations";
-            $result = mysqli_query($conn, $consulta);
-            $options ="";
-            while ($row = mysqli_fetch_row($result)) {
-
-                $options = $options."<option>$row[0]</option>";
-            }
-
-            foreach($result as $row)
-            {
-            	$linea .= '<option value="'.$row["Station_model"].'">'.$row["Station_model"].'</option>';
-
-            }
     ?>
 
 
-    <div class="container" style="margin-top:80px">
 
-        <input class="form-control my-0 py-1" id="search_text" type="text" placeholder="Buscar por Linea/Area/Estacion" aria-label="Search"></br>
-        <div id="filter">
+      <div style="margin-top:50px">
+
+
+        <input class="form-control " id="search_text" type="text" placeholder="Buscar por Responsable/fecha/Estatus" aria-label="Search"></br>
+        <div id="filter4">
 
         </div>
+      </div>
 
-</div>
+
+
   </body>
 </html>
 
@@ -71,12 +57,12 @@ $(document).ready(function(){
  function load_data(query)
  {
   $.ajax({
-   url:"fetchlive.php",
+   url:"fetchlivefallas.php",
    method:"POST",
    data:{query:query},
    success:function(data)
    {
-    $('#filter').html(data);
+    $('#filter4').html(data);
    }
   });
  }
