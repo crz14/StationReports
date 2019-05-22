@@ -117,10 +117,10 @@ session_start();
               </div>
               <div class="col">
                 <div class="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="graphCanvas3" ></canvas>
+                  <canvas id="myChart3" ></canvas>
                 </div>
                 <div class="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="graphCanvas4" ></canvas>
+                  <canvas id="myChart4" ></canvas>
                 </div>
               </div>
             </div>
@@ -189,8 +189,9 @@ function showGraph()
 {
     {
         $.post("datachart.php",
-        function (data,data2)
+        function (data)
         {
+
             console.log(data);
              var name = [];
             var marks = [];
@@ -219,23 +220,24 @@ function showGraph()
                     }
                 ]
             };
-            var chartdata2 = {
-                labels: name,
-                datasets: [
-                    {
-                        label: 'Fallas Abiertas ',
-                        backgroundColor: '#2FAEC9',
-                        borderColor: '#0235C7',
-                        hoverBackgroundColor: '#2FA2BD',
-                        hoverBorderColor: '#0235C7',
-                        borderWidth: .3,
-                        data: marks
 
-
-
-                    }
-                ]
-            };
+            // var chartdata2 = {
+            //     labels: name,
+            //     datasets: [
+            //         {
+            //             label: 'Fallas Abiertas ',
+            //             backgroundColor: '#2FAEC9',
+            //             borderColor: '#0235C7',
+            //             hoverBackgroundColor: '#2FA2BD',
+            //             hoverBorderColor: '#0235C7',
+            //             borderWidth: .3,
+            //             data: marks
+            //
+            //
+            //
+            //         }
+            //     ]
+            // };
 
 
             var graphTarget = $("#graphCanvas");
@@ -244,28 +246,112 @@ function showGraph()
                 type: 'bar',
                 data: chartdata
             });
-            var graphTarget = $("#graphCanvas2");
 
-            var barGraph = new Chart(graphTarget, {
-                type: 'bar',
-                data: chartdata2
-            });
-            var graphTarget = $("#graphCanvas3");
 
-            var barGraph = new Chart(graphTarget, {
-                type: 'line',
-                data: chartdata
-            });
-            var graphTarget = $("#graphCanvas4");
 
-            var barGraph = new Chart(graphTarget, {
-                type: 'doughnut',
-                data: chartdata
-            });
+            // var graphTarget = $("#graphCanvas2");
+            //
+            // var barGraph = new Chart(graphTarget, {
+            //     type: 'bar',
+            //     data: chartdata2
+            // });
+            // var graphTarget = $("#graphCanvas3");
+            //
+            // var barGraph = new Chart(graphTarget, {
+            //     type: 'line',
+            //     data: chartdata
+            // });
+            // var graphTarget = $("#graphCanvas4");
+            //
+            // var barGraph = new Chart(graphTarget, {
+            //     type: 'line',
+            //     data: chartdata
+            // });
 
         });
     }
+
+    $.post("datachart2.php",
+    function (data2)
+    {
+
+        console.log(data2);
+         var name = [];
+        var marks = [];
+
+
+        for (var i in data2) {
+            name.push(data2[i].Production_line);
+            marks.push(data2[i].IssueTotalOpened);
+
+        }
+        var text = "Fallas Abiertas";
+        var chartdata = {
+            labels: name,
+            datasets: [
+                {
+
+                    label: 'Fallas Abiertas ',
+                    backgroundColor: '#2FAEC9',
+                    borderColor: '#0235C7',
+                    hoverBackgroundColor: '#2FA2BD',
+                    hoverBorderColor: '#0235C7',
+                    borderWidth: .3,
+                    data: marks
+                }
+            ]
+        };
+
+        // var chartdata2 = {
+        //     labels: name,
+        //     datasets: [
+        //         {
+        //             label: 'Fallas Abiertas ',
+        //             backgroundColor: '#2FAEC9',
+        //             borderColor: '#0235C7',
+        //             hoverBackgroundColor: '#2FA2BD',
+        //             hoverBorderColor: '#0235C7',
+        //             borderWidth: .3,
+        //             data: marks
+        //
+        //
+        //
+        //         }
+        //     ]
+        // };
+
+
+        var graphTarget = $("#graphCanvas2");
+
+        var barGraph = new Chart(graphTarget, {
+            type: 'bar',
+            data: chartdata
+        });
+
+
+
+        // var graphTarget = $("#graphCanvas2");
+        //
+        // var barGraph = new Chart(graphTarget, {
+        //     type: 'bar',
+        //     data: chartdata2
+        // });
+        // var graphTarget = $("#graphCanvas3");
+        //
+        // var barGraph = new Chart(graphTarget, {
+        //     type: 'line',
+        //     data: chartdata
+        // });
+        // var graphTarget = $("#graphCanvas4");
+        //
+        // var barGraph = new Chart(graphTarget, {
+        //     type: 'line',
+        //     data: chartdata
+        // });
+
+    });
 }
+
 
 
 // var ctx = document.getElementById("myChart2");
@@ -306,82 +392,82 @@ function showGraph()
 // }
 // });
 //
-// var ctx = document.getElementById("myChart3");
-// var myChart = new Chart(ctx, {
-// type: 'bar',
-// data: {
-// labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
-// datasets: [{
-//   label: '# Fallas Abiertas ',
-//   data: [5, 2, 3, 1, 2, 1],
-//   backgroundColor: [
-//       'rgba(255, 99, 132, 0.2)',
-//       'rgba(54, 162, 235, 0.2)',
-//       'rgba(255, 206, 86, 0.2)',
-//       'rgba(75, 192, 192, 0.2)',
-//       'rgba(153, 102, 255, 0.2)',
-//       'rgba(255, 159, 64, 0.2)'
-//   ],
-//   borderColor: [
-//       'rgba(255,99,132,1)',
-//       'rgba(54, 162, 235, 1)',
-//       'rgba(255, 206, 86, 1)',
-//       'rgba(75, 192, 192, 1)',
-//       'rgba(153, 102, 255, 1)',
-//       'rgba(255, 159, 64, 1)'
-//   ],
-//   borderWidth: .5
-// }]
-// },
-// options: {
-// scales: {
-//   yAxes: [{
-//       ticks: {
-//           beginAtZero:true
-//       }
-//   }]
-// }
-// }
-// });
-//
-//
-// var ctx = document.getElementById("myChart4");
-// var myChart = new Chart(ctx, {
-// type: 'pie',
-// data: {
-// labels: ["Abiertas", "cerradas"],
-// datasets: [{
-//   // label: 'Porcenatje de fallas abiertas y fallas cerradas ',
-//   data: [5, 2,],
-//   backgroundColor: [
-//       'rgba(255, 99, 132, 0.2)',
-//       'rgba(54, 162, 235, 0.2)',
-//       'rgba(255, 206, 86, 0.2)',
-//       'rgba(75, 192, 192, 0.2)',
-//       'rgba(153, 102, 255, 0.2)',
-//       'rgba(255, 159, 64, 0.2)'
-//   ],
-//   borderColor: [
-//       'rgba(255,99,132,1)',
-//       'rgba(54, 162, 235, 1)',
-//       'rgba(255, 206, 86, 1)',
-//       'rgba(75, 192, 192, 1)',
-//       'rgba(153, 102, 255, 1)',
-//       'rgba(255, 159, 64, 1)'
-//   ],
-//   borderWidth: .5
-// }]
-// },
-// options: {
-// scales: {
-//   yAxes: [{
-//       ticks: {
-//           beginAtZero:true
-//       }
-//   }]
-// }
-// }
-// });
+var ctx = document.getElementById("myChart3");
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
+datasets: [{
+  label: '# ',
+  data: [5, 2, 3, 1, 2, 1],
+  backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+  ],
+  borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+  ],
+  borderWidth: .5
+}]
+},
+options: {
+scales: {
+  yAxes: [{
+      ticks: {
+          beginAtZero:true
+      }
+  }]
+}
+}
+});
+
+
+var ctx = document.getElementById("myChart4");
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: {
+labels: ["Abiertas", "cerradas"],
+datasets: [{
+  // label: 'Porcenatje de fallas abiertas y fallas cerradas ',
+  data: [5, 2,],
+  backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+  ],
+  borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+  ],
+  borderWidth: .5
+}]
+},
+options: {
+scales: {
+  yAxes: [{
+      ticks: {
+          beginAtZero:true
+      }
+  }]
+}
+}
+});
 </script>
 
   <script src="vendor/jquery/jquery.min.js"></script>
