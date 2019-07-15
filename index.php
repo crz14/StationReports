@@ -13,9 +13,14 @@ session_start();
   <meta name="author" content="">
   <script src="js/chartbundle.js"></script>
   <script src="js/ajaxjquery.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
-  <!-- <script src="http://code.jquery.com/jquery-1.4.min.js" type="text/javascript"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.4.min.js" type="text/javascript"></script> -->
+
+
+  <!-- <script src="https://bootstrapthemes.co"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"crossorigin="anonymous"></script> -->
+
   <title>Reporte Tiempo Muerto</title>
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/simple-sidebar.css" rel="stylesheet">
@@ -23,7 +28,8 @@ session_start();
 </head>
 
 <body>
-
+  <!-- <script src="js/bootstrap-4-navbar.js"></script> -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   <?php
     if (isset($_SESSION['loggedin'])) {
     }
@@ -43,17 +49,16 @@ session_start();
         }
   ?>
 <div id ="wrapper" class="toggled">
-  <div class="d-flex" id="wrapper" >
+  <div class="d-flex" id="wrapper">
     <div class="bg-dark border-right" id="sidebar-wrapper">
       <div class="sidebar-heading text-white"><a href="index.php" class="text-white">Menu</a></div>
-
       <div class="list-group list-group-flush">
         <div class="btn-group dropright">
           <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Agregar</button>
             <div class="dropdown-menu">
-            <a href="#" id="p" class="list-group-item list-group-item-action text-white bg-dark">Fallas</a>
+            <a href="#" id="p" class="list-group-item list-group-item-action text-white bg-dark">Falla</a>
             <a href="#" id="q" class="list-group-item list-group-item-action text-white bg-dark">UCS</a>
-            <a href="#" id="r" class="list-group-item list-group-item-action text-white bg-dark">Maquinas Virtuales</a>
+            <a href="#" id="r" class="list-group-item list-group-item-action text-white bg-dark">Maquinas Virtual</a>
             <a href="#" id="s" class="list-group-item list-group-item-action text-white bg-dark">Registro Incidentes</a>
             <a href="#" id="aTec" class="list-group-item list-group-item-action text-white bg-dark">Tecnicos</a>
             </div>
@@ -69,65 +74,92 @@ session_start();
         <div class="btn-group dropright">
         <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Mostrar</button>
           <div class="dropdown-menu">
-          <a href="#" id="listaucs"class="list-group-item list-group-item-action text-white bg-dark">Lista UCS</a>
+          <a href="#" id="listaucs" class="list-group-item list-group-item-action text-white bg-dark">Lista UCS</a>
           <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Maquinas Virtuales</a>
-          <a href="#"  id="listafallas" class="list-group-item list-group-item-action text-white bg-dark">Fallas de Estaciones (Abiertos / Cerrados)</a>
-          <a href="#"  id="listacisco" class="list-group-item list-group-item-action text-white bg-dark">Casos Cisco (Abiertos/Cerrados) </a>
+          <a href="#"  id="listafallas" class="list-group-item list-group-item-action text-white bg-dark">Fallas de Estaciones(Abiertos/Cerrados) </a>
+          <a href="#"  id="listacisco" class="list-group-item list-group-item-action text-white bg-dark">Casos Cisco(Abiertos/Cerrados)</a>
           </div>
         </div>
         <a href="#" class="list-group-item list-group-item-action text-white bg-dark">Graficas</a>
         <div class="btn-group dropright">
-        <button type="button" class="list-group-item list-group-item-action text-white bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Inventarios</button>
-          <div class="dropdown-menu">
-          <a href="#" class="list-group-item list-group-item-action text-white bg-dark">Equipo Cisco</a>
-          <a href="#"  class="list-group-item list-group-item-action text-white bg-dark">Equipo Foxconn</a>
-          </div>
+          <!-- <a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Inventarios
+          </a> -->
+          <a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Inventarios</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark" data-toggle="dropdown">Consultas</a>
+              <ul class="dropdown-menu">
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="a">Insumos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="b">Activos</a></li>
+              </ul>
+            </li>
+            <li><a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark" data-toggle="dropdown">Activos</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="c" data-toggle="dropdown" >Modelos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="d"data-toggle="dropdown" >Productos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="e"data-toggle="dropdown" >Tipos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="f"data-toggle="dropdown" >Marcas</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="g"data-toggle="dropdown" >Clientes</a></li>
+                <!-- <li><a class="dropdown-item text-white bg-dark" href="#" id="g">Clientes</a></li> -->
+              </ul>
+            </li>
+            <li><a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark" data-toggle="dropdown">Entradas y Salidas</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <!-- <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="h" data-toggle="dropdown">Insumos</a></li> -->
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="h" data-toggle="dropdown">Alta de Activos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="i" data-toggle="dropdown">Salidas de Activos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="j" data-toggle="dropdown">Registro Insumos</a></li>
+              </ul>
+            </li>
+            <li><a class="list-group-item list-group-item-action dropdown-toggle text-white bg-dark" data-toggle="dropdown">Equipo Dañado</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="k" data-toggle="dropdown">Registro Reparaciones Activos</a></li>
+                <li><a class="list-group-item list-group-item-action text-white bg-dark" href="#" id="l" data-toggle="dropdown">Registro Reparaciones Insumos</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
     <div id="page-content-wrapper">
-        <nav class="navbar navbar-dark bg-dark sticky-top">
-
-          <button class="btn btn-info" id="menu-toggle">Accionar Menu</button>
-          <a class="text-white "> <?php echo "Bienvenido ".$_SESSION['name']." ". $_SESSION['lastname'];?></a>
-          <a href="logout.php" class="btn btn-info" role="button" aria-pressed="true">Cerrar Sesion</a>
-
-        </nav>
+      <nav class="navbar navbar-dark bg-dark sticky-top">
+        <button class="btn btn-info" id="menu-toggle">Accionar Menu</button>
+        <a class="text-white "> <?php echo "Bienvenido ".$_SESSION['name']." ". $_SESSION['lastname'];?></a>
+        <a href="logout.php" class="btn btn-info" role="button" aria-pressed="true">Cerrar Sesion</a>
+      </nav>
       <div class="container-fluid">
         <h1 class="mt-4"> Ingenieria de Prueba (UABU)</h1><br>
         <div class="chart">
-
-
-
           <div id="result">
             <!-- <div class="chart-container" style="position: relative; height:40vh; width:77vw"> -->
             <div>
               <div class="form-row mb-0">
-              <div class="col">
+                <div class="col">
                 <!-- <div class="chart-container" style=" height:40vh; width:37vw">
                   <canvas id="myChart" ></canvas>
                 </div> -->
-                <div id="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="graphCanvas"></canvas>
-                </div>
+                  <div id="chart-container" style=" height:40vh; width:37vw">
+                    <canvas id="graphCanvas"></canvas>
+                  </div>
 
-                <div class="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="graphCanvas2" ></canvas>
+                  <div class="chart-container" style=" height:40vh; width:37vw">
+                    <canvas id="graphCanvas2" ></canvas>
+                  </div>
                 </div>
-              </div>
-              <div class="col">
-                <div class="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="myChart3" ></canvas>
-                </div>
-                <div class="chart-container" style=" height:40vh; width:37vw">
-                  <canvas id="myChart4" ></canvas>
+                <div class="col">
+                  <div class="chart-container" style=" height:40vh; width:37vw">
+                    <canvas id="graphCanvas3" ></canvas>
+                  </div>
+                  <div class="chart-container" style=" height:40vh; width:37vw">
+                    <canvas id="graphCanvas4" ></canvas>
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
-
+          </div>
+          <!-- ​<img src="images/chart.jpg" class="rounded mx-auto d-block" alt="..."> -->
         </div>
-
       </div>
     </div>
   </div>
@@ -139,266 +171,92 @@ session_start();
   });
 </script>
 </body>
-
 </html>
 <script>
 
-// var ctx = document.getElementById("myChart");
-// var myChart = new Chart(ctx, {
-// type: 'line',
-// data: {
-// labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
-// datasets: [{
-//   label: '# Fallas Abiertas ',
-//   data: [5, 2, 3, 1, 2, 1],
-//   backgroundColor: [
-//       'rgba(255, 99, 132, 0.2)',
-//       'rgba(54, 162, 235, 0.2)',
-//       'rgba(255, 206, 86, 0.2)',
-//       'rgba(75, 192, 192, 0.2)',
-//       'rgba(153, 102, 255, 0.2)',
-//       'rgba(255, 159, 64, 0.2)'
-//   ],
-//   borderColor: [
-//       'rgba(255,99,132,1)',
-//       'rgba(54, 162, 235, 1)',
-//       'rgba(255, 206, 86, 1)',
-//       'rgba(75, 192, 192, 1)',
-//       'rgba(153, 102, 255, 1)',
-//       'rgba(255, 159, 64, 1)'
-//   ],
-//   borderWidth: .5
-// }]
-// },
-// options: {
-// scales: {
-//   yAxes: [{
-//       ticks: {
-//           beginAtZero:true
-//       }
-//   }]
-// }
-// }
-// });
-$(document).ready(function () {
-    showGraph();
+var ctx = document.getElementById("graphCanvas");
+var graphCanvas = new Chart(ctx, {
+type: 'line',
+data: {
+labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
+datasets: [{
+  label: '# Fallas Abiertas ',
+  data: [5, 2, 3, 1, 2, 1],
+  backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+  ],
+  borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+  ],
+  borderWidth: .5
+}]
+},
+options: {
+scales: {
+  yAxes: [{
+      ticks: {
+          beginAtZero:true
+      }
+  }]
+}
+}
 });
 
-
-function showGraph()
-{
-    {
-        $.post("datachart.php",
-        function (data)
-        {
-
-            console.log(data);
-             var name = [];
-            var marks = [];
-
-
-            for (var i in data) {
-                name.push(data[i].Production_line);
-                marks.push(data[i].IssueTotalClosed);
-
-            }
-
-            var chartdata = {
-                labels: name,
-                datasets: [
-                    {
-                        label: 'Fallas Cerradas ',
-                        backgroundColor: '#2FAEC9',
-                        borderColor: '#0235C7',
-                        hoverBackgroundColor: '#2FA2BD',
-                        hoverBorderColor: '#0235C7',
-                        borderWidth: .3,
-                        data: marks
-
-
-
-                    }
-                ]
-            };
-
-            // var chartdata2 = {
-            //     labels: name,
-            //     datasets: [
-            //         {
-            //             label: 'Fallas Abiertas ',
-            //             backgroundColor: '#2FAEC9',
-            //             borderColor: '#0235C7',
-            //             hoverBackgroundColor: '#2FA2BD',
-            //             hoverBorderColor: '#0235C7',
-            //             borderWidth: .3,
-            //             data: marks
-            //
-            //
-            //
-            //         }
-            //     ]
-            // };
-
-
-            var graphTarget = $("#graphCanvas");
-
-            var barGraph = new Chart(graphTarget, {
-                type: 'bar',
-                data: chartdata
-            });
-
-
-
-            // var graphTarget = $("#graphCanvas2");
-            //
-            // var barGraph = new Chart(graphTarget, {
-            //     type: 'bar',
-            //     data: chartdata2
-            // });
-            // var graphTarget = $("#graphCanvas3");
-            //
-            // var barGraph = new Chart(graphTarget, {
-            //     type: 'line',
-            //     data: chartdata
-            // });
-            // var graphTarget = $("#graphCanvas4");
-            //
-            // var barGraph = new Chart(graphTarget, {
-            //     type: 'line',
-            //     data: chartdata
-            // });
-
-        });
-    }
-
-    $.post("datachart2.php",
-    function (data2)
-    {
-
-        console.log(data2);
-         var name = [];
-        var marks = [];
-
-
-        for (var i in data2) {
-            name.push(data2[i].Production_line);
-            marks.push(data2[i].IssueTotalOpened);
-
-        }
-        var text = "Fallas Abiertas";
-        var chartdata = {
-            labels: name,
-            datasets: [
-                {
-
-                    label: 'Fallas Abiertas ',
-                    backgroundColor: '#2FAEC9',
-                    borderColor: '#0235C7',
-                    hoverBackgroundColor: '#2FA2BD',
-                    hoverBorderColor: '#0235C7',
-                    borderWidth: .3,
-                    data: marks
-                }
-            ]
-        };
-
-        // var chartdata2 = {
-        //     labels: name,
-        //     datasets: [
-        //         {
-        //             label: 'Fallas Abiertas ',
-        //             backgroundColor: '#2FAEC9',
-        //             borderColor: '#0235C7',
-        //             hoverBackgroundColor: '#2FA2BD',
-        //             hoverBorderColor: '#0235C7',
-        //             borderWidth: .3,
-        //             data: marks
-        //
-        //
-        //
-        //         }
-        //     ]
-        // };
-
-
-        var graphTarget = $("#graphCanvas2");
-
-        var barGraph = new Chart(graphTarget, {
-            type: 'bar',
-            data: chartdata
-        });
-
-
-
-        // var graphTarget = $("#graphCanvas2");
-        //
-        // var barGraph = new Chart(graphTarget, {
-        //     type: 'bar',
-        //     data: chartdata2
-        // });
-        // var graphTarget = $("#graphCanvas3");
-        //
-        // var barGraph = new Chart(graphTarget, {
-        //     type: 'line',
-        //     data: chartdata
-        // });
-        // var graphTarget = $("#graphCanvas4");
-        //
-        // var barGraph = new Chart(graphTarget, {
-        //     type: 'line',
-        //     data: chartdata
-        // });
-
-    });
+var ctx = document.getElementById("graphCanvas2");
+var graphCanvas = new Chart(ctx, {
+type: 'doughnut',
+data: {
+labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
+datasets: [{
+  label: '# Fallas Abiertas ',
+  data: [5, 2, 3, 1, 2, 1],
+  backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+  ],
+  borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+  ],
+  borderWidth: .5
+}]
+},
+options: {
+scales: {
+  yAxes: [{
+      ticks: {
+          beginAtZero:true
+      }
+  }]
 }
+}
+});
 
-
-
-// var ctx = document.getElementById("myChart2");
-// var myChart = new Chart(ctx, {
-// type: 'doughnut',
-// data: {
-// labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
-// datasets: [{
-//   label: '# Fallas Abiertas ',
-//   data: [5, 2, 3, 1, 2, 1],
-//   backgroundColor: [
-//       'rgba(255, 99, 132, 0.2)',
-//       'rgba(54, 162, 235, 0.2)',
-//       'rgba(255, 206, 86, 0.2)',
-//       'rgba(75, 192, 192, 0.2)',
-//       'rgba(153, 102, 255, 0.2)',
-//       'rgba(255, 159, 64, 0.2)'
-//   ],
-//   borderColor: [
-//       'rgba(255,99,132,1)',
-//       'rgba(54, 162, 235, 1)',
-//       'rgba(255, 206, 86, 1)',
-//       'rgba(75, 192, 192, 1)',
-//       'rgba(153, 102, 255, 1)',
-//       'rgba(255, 159, 64, 1)'
-//   ],
-//   borderWidth: .5
-// }]
-// },
-// options: {
-// scales: {
-//   yAxes: [{
-//       ticks: {
-//           beginAtZero:true
-//       }
-//   }]
-// }
-// }
-// });
-//
-var ctx = document.getElementById("myChart3");
-var myChart = new Chart(ctx, {
+var ctx = document.getElementById("graphCanvas3");
+var graphCanvas = new Chart(ctx, {
 type: 'bar',
 data: {
 labels: ["Nyquist", "Porter", "Adelphi", "Newton", "G48", "Gladiador"],
 datasets: [{
-  label: '# ',
+  label: '# Fallas Abiertas ',
   data: [5, 2, 3, 1, 2, 1],
   backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
@@ -431,8 +289,8 @@ scales: {
 });
 
 
-var ctx = document.getElementById("myChart4");
-var myChart = new Chart(ctx, {
+var ctx = document.getElementById("graphCanvas4");
+var graphCanvas = new Chart(ctx, {
 type: 'pie',
 data: {
 labels: ["Abiertas", "cerradas"],
@@ -470,43 +328,93 @@ scales: {
 });
 </script>
 
+
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function(){
-       $("#p").on("click",function(){
-        $("#result").load("agregarfallas.php");
-        });
-
-        $("#q").on("click",function(){
-         $("#result").load("agregarucs.php");
-         });
-
-         $("#r").on("click",function(){
-          $("#result").load("agregarvm.php");
+      $("#p").on("click",function(){
+          $("#result").load("agregarfallas.php");
           });
-          $("#s").on("click",function(){
-           $("#result").load("agregarincidentes.php");
+
+          $("#q").on("click",function(){
+           $("#result").load("agregarucs.php");
            });
 
-          $("#ctick").on("click",function(){
-            // $("#result").load("fallaquery.html");
-             $("#result").load("query.php");
-           });
-           $("#cInicidentes").on("click",function(){
-            $("#result").load("queryCisco.php");
+           $("#r").on("click",function(){
+            $("#result").load("agregarvm.php");
             });
-            $("#listacisco").on("click",function(){
-             $("#result").load("querylistacisco.php");
+            $("#s").on("click",function(){
+             $("#result").load("agregarincidentes.php");
              });
-             $("#listafallas").on("click",function(){
-              $("#result").load("querylistafallas.php");
+
+            $("#ctick").on("click",function(){
+              // $("#result").load("fallaquery.html");
+               $("#result").load("query.php");
+             });
+             $("#cInicidentes").on("click",function(){
+              $("#result").load("queryCisco.php");
               });
-              $("#aTec").on("click",function(){
-               $("#result").load("agregarTecnicos.php");
+              $("#listacisco").on("click",function(){
+               $("#result").load("querylistacisco.php");
                });
-           $("#listaucs").on("click",function(){
-            $("#result").load("queryUCS.php");
-            });
+               $("#listafallas").on("click",function(){
+                $("#result").load("querylistafallas.php");
+                });
+                $("#aTec").on("click",function(){
+                 $("#result").load("agregarTecnicos.php");
+                 });
+             $("#listaucs").on("click",function(){
+              $("#result").load("queryUCS.php");
+              });
+
+      $("#a").on("click",function(){
+      $("#result").load("consulta_insumos.php");
       });
+
+      $("#b").on("click",function(){
+      $("#result").load("consulta_activos.php");
+      });
+
+      $("#c").on("click",function(){
+      $("#result").load("agregarmodelos.php");
+      });
+
+      $("#d").on("click",function(){
+      $("#result").load("agregarproductos.php");
+      });
+
+      $("#e").on("click",function(){
+      $("#result").load("agregartipo.php");
+      });
+
+      $("#f").on("click",function(){
+      $("#result").load("agregarmarcas.php");
+      });
+
+      $("#g").on("click",function(){
+      $("#result").load("agregarclientes.php");
+      });
+
+      $("#h").on("click",function(){
+      $("#result").load("activos_altas.php");
+      });
+
+      $("#i").on("click",function(){
+      $("#result").load("activos_salidas.php");
+      });
+
+      $("#j").on("click",function(){
+      $("#result").load("Insumos_masivo.php");
+      });
+
+      $("#k").on("click",function(){
+      $("#result").load("reparaciones_activos.php");
+      });
+
+      $("#l").on("click",function(){
+      $("#result").load("reparaciones_insumos.php");
+      });
+    });
   </script>
+  <script src="js/bootstrap-4-navbar.js"></script>

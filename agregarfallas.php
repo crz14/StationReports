@@ -45,26 +45,23 @@
         die("Connection failed: " . mysqli_connect_error());
       }
 
-      $consulta = "SELECT DISTINCT Station_model FROM stations";
+      $consulta = "SELECT DISTINCT Station_model FROM stations order by station_model";
       $result = mysqli_query($conn, $consulta);
       $options ="";
       while ($row = mysqli_fetch_row($result)) {
-
           $options = $options."<option>$row[0]</option>";
       }
-      // $query = "SELECT DISTINCT Station_name FROM stations";
+      // $query = "SELECT DISTINCT Station_name FROM stations order by station_name";
       // $result2 = mysqli_query($conn, $query);
       // $options2 ="";
       // while ($row2 = mysqli_fetch_row($result2)) {
-      //
       //     $options2 = $options2."<option>$row2[0]</option>";
       // }
-
-      foreach($result as $row)
-      {
-      	$linea .= '<option value="'.$row["Station_model"].'">'.$row["Station_model"].'</option>';
-
-      }
+      // foreach($result as $row)
+      // {
+      // 	$linea .= '<option value="'.$row["Station_model"].'">'.$row["Station_model"].'</option>';
+      //
+      // }
     ?>
 
 <div class="container">
@@ -79,9 +76,24 @@
               <select name="estacion" id="nombreE" class="browser-default custom-select mb-4 form-control action" required>
       					<option value="">Nombre Estacion</option>
       				</select>
-              <input type="number" name="Nestacion" class="form-control mb-4" placeholder="Numero Estacion:" required>
 
-              <input type="number" name="Ncelda" class="form-control mb-4" placeholder="Numero Celda:" required>
+              <select name="Nestacion" id="numeroE" class="browser-default custom-select mb-4" required>
+                  <option value="" disabled selected>Numero Estacion:</option>
+                  <?php
+                  for ($i=1; $i <26 ; $i++) {
+                    echo "<option>$i</option>";
+                  }
+                   ?>
+              </select>
+              <select name="Ncelda" id="numeroC"class="browser-default custom-select mb-4" required>
+                  <option value="" disabled selected>Numero Celda:</option>
+                  <?php
+                  for ($i=0; $i < 46 ; $i++) {
+                    echo "<option>$i</option>";
+                  }
+                   ?>
+
+              </select>
 
           </div>
           <div class="col">
@@ -93,7 +105,7 @@
 
             </select> -->
             <select name="estatus" id="status"class="browser-default custom-select mb-4 " required>
-                <option value="" disabled selected>Se reparo la Falla?</option>
+                <option value="" disabled selected>Se reparo la celda?</option>
                 <option value="closed">Si</option>
                 <option value="opened">No</option>
             </select>

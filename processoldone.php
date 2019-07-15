@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'deadtime');
 
@@ -7,7 +6,7 @@ if (mysqli_connect_errno()) {
   echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
   exit;
 }
-$User=$_SESSION['name']." ".$_SESSION['lastname'];
+
 $page = isset($_GET['p'])? $_GET['p'] : '' ;
 if($page=='view'){
     $result = $mysqli->query("SELECT Issue_id,Issue_date, User_name, Production_line, Station_name,Station_Number,Cell_number,
@@ -54,7 +53,7 @@ if($page=='view'){
 
     if ($input['action'] == 'edit')
      {
-        $mysqli->query("UPDATE issues SET Issue_status = 'closed' ,issueClosedby='" . $User . "',Issue_solution='" . $input['Issue_solution'] . "', Repaired_time='" . $input['Repaired_time'] . "' WHERE Issue_id='" . $input['Issue_id'] . "'");
+        $mysqli->query("UPDATE issues SET Issue_status = 'closed' ,Issue_solution='" . $input['Issue_solution'] . "', Repaired_time='" . $input['Repaired_time'] . "' WHERE Issue_id='" . $input['Issue_id'] . "'");
      }
 
 

@@ -34,32 +34,16 @@
     $row =mysqli_fetch_row($result);
     $dato=$row[0];
 
-    $queryS= "SELECT IssueTotalClosed from issues where Nomenclature ='$concatenado'";
-    $result123 = mysqli_query($conn, $queryS);
-    $row2 =mysqli_fetch_row($result123);
-    $dato2=$row2[0]+1;
-    //$_SESSION['resta_con']=$row2[1];
-
-    $queryFO= "SELECT IssueTotalOpened from issues where Nomenclature ='$concatenado'";
-    $result1234 = mysqli_query($conn, $queryFO);
-    $row24 =mysqli_fetch_row($result1234);
-    $dato24=$row24[0]+1;
-
-
 
 
                   if ($Status == "closed") {
-                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,issueClosedby,Nomenclature,IssueTotalClosed)
-                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$User','$concatenado',$dato2)";
-                                  //$queryUp= "UPDATE issues SET IssueTotalClosed = (IssueTotalClosed + 1) WHERE Production_line = '$Line' AND Issue_status = 'closed'";
-                                  $queryUp= "UPDATE issues SET IssueTotalClosed = (IssueTotalClosed + 1) WHERE Production_line = '$Line'";
-                                  $result22 = mysqli_query($conn, $queryUp);
+                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,issueClosedby,Nomenclature)
+                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$User','$concatenado')";
+
 
                   }else{
-                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,Nomenclature,IssueTotalOpened)
-                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$concatenado','$dato24')";
-                                  $queryUp25= "UPDATE issues SET IssueTotalOpened = (IssueTotalOpened + 1) WHERE Production_line = '$Line' AND Issue_status = 'opened'";
-                                  $result25 = mysqli_query($conn, $queryUp25);
+                    $consulta = "INSERT INTO issues (User_name,Production_line, Station_name,Station_Number,Cell_number,Issue_name,Issue_solution,Repaired_time,Issue_comment,Station_Stopped,Issue_status,Station_id,Nomenclature)
+                    		          VALUES ('$User','$Line','$Station', '$NStation','$Ncell','$Nissue','$Solution','$Ftime','$Comment','$Question','$Status','$dato','$concatenado')";
                   }
 
 
